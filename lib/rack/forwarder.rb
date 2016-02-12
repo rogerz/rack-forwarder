@@ -33,7 +33,6 @@ module Rack
         matcher.url_from(request.path),
         options,
       )
-
       [response.status, response.headers, [response.body]]
     end
 
@@ -48,6 +47,7 @@ module Rack
         end
       end
       headers["X-Request-Id"] = env["action_dispatch.request_id"]
+      headers["Content-Type"] = env["CONTENT_TYPE"]
 
       headers
     end
