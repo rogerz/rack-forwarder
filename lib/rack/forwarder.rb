@@ -45,7 +45,11 @@ module Rack
 
     def extract_http_headers(env)
       headers = env.each_with_object(Utils::HeaderHash.new) do |(key, value), hash|
-        hash[$1] = value if key =~ /HTTP_(.*)/
+        if key =~ /HTTP_(.*)/
+          if $1 != 'HOST'
+            hash[$1] = value
+          end
+        end
       end
       headers["X-Request-Id"] = env["action_dispatch.request_id"]
 
