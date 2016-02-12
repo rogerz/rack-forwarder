@@ -7,11 +7,6 @@ require "rack/forwarder/registry"
 
 module Rack
   class Forwarder
-    HEADERS_TO_FORWARD = %w(
-      Content-Type
-      Content-Length
-    )
-
     def initialize(app, options = {}, &block)
       @app = app
       @matchers = Registry.new
@@ -39,7 +34,7 @@ module Rack
         options,
       )
 
-      [response.status, headers_from_response(response.headers), [response.body]]
+      [response.status, response.headers, [response.body]]
     end
 
     private
@@ -55,13 +50,6 @@ module Rack
       headers["X-Request-Id"] = env["action_dispatch.request_id"]
 
       headers
-    end
-
-    def headers_from_response(headers)
-      HEADERS_TO_FORWARD.each_with_object(Utils::HeaderHash.new) do |header, hash|
-        value = headers[header]
-        hash[header] = value if value
-      end
     end
   end
 end

@@ -30,6 +30,15 @@ RSpec.describe Rack::Forwarder do
 
       get "/foo"
     end
+
+    it "returns response headers" do
+      Excon.stub({url: "http://example.com/foo"}, {headers: {foo: 'bar'}, status: 200})
+
+      post "/foo"
+
+      expect(last_response).to be_successful
+      expect(last_response.headers[:foo]).to eq('bar')
+    end
   end
 
   context "capture groups" do
