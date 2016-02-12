@@ -1,6 +1,7 @@
 # Rack::Forwarder
 
-[![Build Status](https://travis-ci.org/coop/rack-forwarder.svg?branch=master)](https://travis-ci.org/coop/rack-forwarder)
+- Fork: [![Build Status](https://travis-ci.org/rogerz/rack-forwarder.svg?branch=master)](https://travis-ci.org/rogerz/rack-forwarder)
+- Origin: [![Build Status](https://travis-ci.org/coop/rack-forwarder.svg?branch=master)](https://travis-ci.org/coop/rack-forwarder)
 
 Declarative forwarding rack middleware based on
 https://gist.github.com/chneukirchen/32376.
